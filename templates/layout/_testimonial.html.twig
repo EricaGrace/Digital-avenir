@@ -1,0 +1,8 @@
+
+<div class="testimonial">
+  <div class="stars">
+    {% for i in 1..testimonial.rating %}★{% endfor %}
+  </div>
+  <blockquote>{{ testimonial.text }}</blockquote>
+  <div class="author">— {{ testimonial.name }}</div>
+</div>

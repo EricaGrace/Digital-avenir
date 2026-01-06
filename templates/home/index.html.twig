@@ -1,0 +1,126 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}BizFlick — Accueil{% endblock %}
+
+{% block body %}
+  {# HERO #}
+  <section class="bf-hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Award‑Winning <span class="accent">Software Development</span></h1>
+        <p>Nous concevons des solutions performantes, évolutives et centrées utilisateur.</p>
+        <div class="actions">
+          #aboutMore About Us</a>
+          #servicesExplore Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# SERVICES #}
+  <section class="bf-section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Growth Based Services</h2>
+        <p>Un portefeuille de services conçu pour l’impact et la croissance.</p>
+      </div>
+      <div class="grid-3">
+        {% for service in services %}
+          {% include 'layout/_service_card.html.twig' with { service: service } %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# ABOUT #}
+  <section class="bf-section alt" id="about">
+    <div class="container two-cols">
+      <div>
+        <h2>We are delivering only <span class="accent">Exceptional Quality Work</span></h2>
+        <p>
+          Des produits robustes, une exécution soignée et une obsession pour l’expérience utilisateur.
+          Nos méthodes allient stratégie, design et ingénierie.
+        </p>
+        #contactRead More</a>
+      </div>
+      <div class="about-illustration">
+        <div class="illu-card">Design</div>
+        <div class="illu-card">Engineering</div>
+        <div class="illu-card">Strategy</div>
+      </div>
+    </div>
+  </section>
+
+  {# STATS / COUNTERS #}
+  <section class="bf-stats">
+    <div class="container grid-4">
+      {% for s in stats %}
+        <div class="stat" data-target="{{ s.value }}">
+          <div class="value">0{{ s.suffix }}</div>
+          <div class="label">{{ s.label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  {# GALLERY #}
+  <section class="bf-section" id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <h2>Some Captured Moments</h2>
+        <p>Quelques instantanés qui racontent nos projets.</p>
+      </div>
+      <div class="masonry">
+        {% for img in gallery %}
+          <figure class="masonry-item">
+            {{ asset(img) }}
+          </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# TESTIMONIALS (Slider) #}
+  <section class="bf-section alt" id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <h2>What Our Clients Say</h2>
+        <p>Feedback authentique de nos clients.</p>
+      </div>
+      <div class="slider" data-slider>
+        <div class="slides">
+          {% for testimonial in testimonials %}
+            <div class="slide">
+              {% include 'layout/_testimonial.html.twig' with { testimonial: testimonial } %}
+            </div>
+          {% endfor %}
+        </div>
+        <button class="nav prev" aria-label="Précédent">‹</button>
+        <button class="nav next" aria-label="Suivant">›</button>
+      </div>
+    </div>
+  </section>
+
+  {# BLOG / NEWS #}
+  <section class="bf-section" id="blog">
+    <div class="container">
+      <div class="section-head">
+        <h2>Latest News & Updates</h2>
+        <p>Conseils et veille pour prendre de l’avance.</p>
+      </div>
+      <div class="grid-3">
+        {% for post in posts %}
+          <article class="post-card">
+            {{ asset(post.image) }}
+            <div class="content">
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.excerpt }}</p>
+              {{ post.href }}Read More →</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

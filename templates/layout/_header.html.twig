@@ -1,0 +1,22 @@
+
+<header class="bf-header">
+  <div class="container">
+
+    {# Logo / lien vers la page d'accueil #}
+    {# path(Digital-Avenir)#}<span class="dot">.</span>
+    </a>
+
+    {# Navigation #}
+    <nav class="bf-nav">
+      {% for item in menu %}
+        {% if item.href starts with('#') %}
+          {{ item.href }}{{ item.label }}</a>
+        {% else %}
+          {{ path(item.href) }}{{ item.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+  </div>
+</header>
+
