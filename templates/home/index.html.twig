@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}BizFlick — Accueil{% endblock %}
@@ -8,11 +7,12 @@
   <section class="bf-hero" id="home">
     <div class="container">
       <div class="hero-content">
-        <h1>Award‑Winning <span class="accent">Software Development</span></h1>
+        <h1>Award-Winning <span class="accent">Software Development</span></h1>
         <p>Nous concevons des solutions performantes, évolutives et centrées utilisateur.</p>
+
         <div class="actions">
-          #aboutMore About Us</a>
-          #servicesExplore Services</a>
+          <a class="btn" href="#about">More About Us</a>
+          <a class="btn btn-outline" href="#services">Explore Services</a>
         </div>
       </div>
     </div>
@@ -25,6 +25,7 @@
         <h2>Growth Based Services</h2>
         <p>Un portefeuille de services conçu pour l’impact et la croissance.</p>
       </div>
+
       <div class="grid-3">
         {% for service in services %}
           {% include 'layout/_service_card.html.twig' with { service: service } %}
@@ -42,8 +43,10 @@
           Des produits robustes, une exécution soignée et une obsession pour l’expérience utilisateur.
           Nos méthodes allient stratégie, design et ingénierie.
         </p>
-        #contactRead More</a>
+
+        <a class="link" href="#contact">Read More →</a>
       </div>
+
       <div class="about-illustration">
         <div class="illu-card">Design</div>
         <div class="illu-card">Engineering</div>
@@ -56,8 +59,8 @@
   <section class="bf-stats">
     <div class="container grid-4">
       {% for s in stats %}
-        <div class="stat" data-target="{{ s.value }}">
-          <div class="value">0{{ s.suffix }}</div>
+        <div class="stat" data-target="{{ s.value }}" data-suffix="{{ s.suffix|default('') }}">
+          <div class="value">0</div>
           <div class="label">{{ s.label }}</div>
         </div>
       {% endfor %}
@@ -71,10 +74,11 @@
         <h2>Some Captured Moments</h2>
         <p>Quelques instantanés qui racontent nos projets.</p>
       </div>
+
       <div class="masonry">
         {% for img in gallery %}
           <figure class="masonry-item">
-            {{ asset(img) }}
+            <img src="{{ asset(img) }}" alt="Gallery image {{ loop.index }}" loading="lazy">
           </figure>
         {% endfor %}
       </div>
@@ -88,6 +92,7 @@
         <h2>What Our Clients Say</h2>
         <p>Feedback authentique de nos clients.</p>
       </div>
+
       <div class="slider" data-slider>
         <div class="slides">
           {% for testimonial in testimonials %}
@@ -96,8 +101,9 @@
             </div>
           {% endfor %}
         </div>
-        <button class="nav prev" aria-label="Précédent">‹</button>
-        <button class="nav next" aria-label="Suivant">›</button>
+
+        <button class="nav prev" type="button" aria-label="Précédent">‹</button>
+        <button class="nav next" type="button" aria-label="Suivant">›</button>
       </div>
     </div>
   </section>
@@ -109,14 +115,15 @@
         <h2>Latest News & Updates</h2>
         <p>Conseils et veille pour prendre de l’avance.</p>
       </div>
+
       <div class="grid-3">
         {% for post in posts %}
           <article class="post-card">
-            {{ asset(post.image) }}
+            <img class="thumb" src="{{ asset(post.image) }}" alt="{{ post.title }}" loading="lazy">
             <div class="content">
               <h3>{{ post.title }}</h3>
               <p>{{ post.excerpt }}</p>
-              {{ post.href }}Read More →</a>
+              <a class="link" href="{{ post.href }}">Read More →</a>
             </div>
           </article>
         {% endfor %}
